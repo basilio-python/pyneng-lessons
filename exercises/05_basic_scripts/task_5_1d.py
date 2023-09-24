@@ -43,8 +43,3 @@ london_co = {
         "routing": True,
     },
 }
-hostname = input("Введите имя устройства: ").lower()
-tup = list(london_co[hostname].keys())
-param = input("Введите имя параметра (" + ", ".join(tup) + "): ").lower()
-print(london_co[hostname].get(param, 'Такого параметра нет'))
-

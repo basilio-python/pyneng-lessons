@@ -44,7 +44,3 @@ london_co = {
         "routing": True,
     },
 }
-
-hostname = input("Введите имя устройства: ")
-param = input("Введите имя параметра: ")
-print(london_co[hostname][param]) 
