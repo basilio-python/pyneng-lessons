@@ -28,9 +28,3 @@ Next-Hop              {}
 Last update           {}
 Outbound Interface    {}
 """
-pref = ospf_route.split()[0]
-adm = ospf_route.split()[1][1:7]
-nh = ospf_route.split()[3].split(',')[0]
-upd = ospf_route.split()[4].split(',')[0]
-out = ospf_route.split()[5]
-print(template.format(pref,adm,nh,upd,out))

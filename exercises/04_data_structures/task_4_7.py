@@ -16,7 +16,3 @@
 """
 
 mac = "AAAA:BBBB:CCCC"
-m = mac.split(':')[0]
-a = mac.split(':')[1]
-c = mac.split(':')[2]
-print('{:08b}{:08b}{:08b}'.format(int(m, 16),int(a, 16),int(c, 16)))
