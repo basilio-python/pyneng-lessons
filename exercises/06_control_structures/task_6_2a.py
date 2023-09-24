@@ -17,3 +17,34 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+ip = input('Введите IP-адрес: ')
+
+if len(list(ip.split("."))) != 4:
+    print("Неправильный IP-адрес")
+elif ip.count(' ') > 0 or ip.count(',') > 0:
+    print("Неправильный IP-адрес")
+else:
+    k = 0
+    for i in list(ip.split(".")):
+        try:
+            if not 0 <= int(i) <= 255:
+                print("Неправильный IP-адрес")
+                break
+        except:
+            print("Неправильный IP-адрес")
+            break
+
+        if k == 3:
+            first: int = int(list(ip.split("."))[0])
+            if first >= 1 and first <= 223:
+                print("unicast")
+            elif first >= 224 and first <= 239:
+                print("multicast")
+            elif ip == "255.255.255.255":
+                print("local broadcast")
+            elif ip == "0.0.0.0":
+                print("unassigned")
+            else:
+                print("unused")
+        k = k + 1
