@@ -14,3 +14,20 @@ Outbound Interface    FastEthernet0/0
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+form = '''
+Prefix                {}
+AD/Metric             {}
+Next-Hop              {}
+Last update           {}
+Outbound Interface    {}
+'''
+
+with open("ospf.txt", 'r') as f:
+    for line in f:
+        pref = line.split()[1]
+        ad = line.split()[2][1:len(line.split()[2]) - 1]
+        nh = line.split()[4][:len(line.split()[4]) - 1]
+        last = line.split()[5][:len(line.split()[5]) - 1]
+        out = line.split()[6]
+        print(form.format(pref, ad, nh, last, out))

@@ -39,3 +39,13 @@ interface Ethernet0/3
 ...
 
 """
+from sys import argv
+
+script, filename = argv
+
+with open(filename, 'r') as f:
+    flist = f.read().rstrip().split("\n")
+    for s in flist:
+        if s.startswith("!"):
+            continue
+        print(s)

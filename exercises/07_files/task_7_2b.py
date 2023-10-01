@@ -16,4 +16,17 @@
 
 """
 
+from sys import argv
+
 ignore = ["duplex", "alias", "configuration"]
+
+script, filename_in, filename_out = argv
+
+with open(filename_in, 'r') as f, open(filename_out, 'w') as fw:
+    flist = f.read().rstrip().split("\n")
+    for s in flist:
+        for i in ignore:
+            if s.startswith("!") or s.__contains__(i):
+                break
+            if i == ignore[len(ignore) - 1]:
+                fw.write(f"{s}\n")

@@ -40,3 +40,17 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+form = "{:<8} {:<19} {}"
+lst = []
+
+with open("CAM_table.txt", 'r') as f:
+    flist = f.read().rstrip().split("\n")
+    for s in flist:
+        if s != "":
+            if s.split()[0].isdigit():
+                lst.append([int(s.split()[0]), s.split()[1], s.split()[3]])
+
+lst.sort()
+
+for i in lst:
+    print(form.format(*i))
