@@ -25,3 +25,31 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
+
+
+def get_int_vlan_map(config_filename):
+    res_access = {}
+    res_trunk = {}
+    with open(config_filename, 'r') as f:
+        interface = ''
+        access_flag = False
+        for line in f:
+            if 'interface ' in line:
+                interface = line.split()[1]
+            elif 'mode access' in line:
+                access_flag = True
+            elif 'access vlan' in line:
+                res_access[interface] = int(line.split()[3])
+                interface = ''
+                access_flag = False
+            elif access_flag is True and 'duplex auto' in line:
+                res_access[interface] = 1
+                interface = ''
+                access_flag = False
+            elif 'allowed vlan' in line:
+                res_trunk[interface] = [int(n) for n in line.split()[4].split(',') if n.isdigit()]
+                interface = ''
+    return res_access, res_trunk
+
+
+print(get_int_vlan_map("config_sw2.txt"))
