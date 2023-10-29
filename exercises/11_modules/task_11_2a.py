@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import task_11_2 as cnm
+import draw_network_graph as draw
+
 """
 Задание 11.2a
 
@@ -74,9 +77,27 @@
 
 """
 
+def unique_network_map(topology_dict):
+    res = {}
+    flag = False
+    for k1,v1 in topology_dict.items():
+        for k2,v2 in res.items():
+            if k1 == v2 and v1 == k2:
+                flag = True
+                break
+        if flag is False:
+            res[k1] = v1
+        flag = False
+    return res
+
+
+
 infiles = [
     "sh_cdp_n_sw1.txt",
     "sh_cdp_n_r1.txt",
     "sh_cdp_n_r2.txt",
     "sh_cdp_n_r3.txt",
 ]
+
+if __name__ == "__main__":
+    draw.draw_topology(unique_network_map(cnm.create_network_map(infiles)), "topology")
